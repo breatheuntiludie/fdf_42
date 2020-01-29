@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:24:53 by ggeri             #+#    #+#             */
-/*   Updated: 2020/01/29 18:45:18 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/01/29 20:48:15 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct 	map_s
 	void	*win_ptr;
 }				t_map;
 
-void			draw_line(int x, int y, int x1, int x2, t_map *map);
-
+void			draw_line(float x, float y, float x1, float y1, t_map *map);
+void			read_map(char *file, t_map *map);
+void			draw(t_map *map)
 #endif

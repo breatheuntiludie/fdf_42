@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:08:26 by ggeri             #+#    #+#             */
-/*   Updated: 2020/01/29 17:14:36 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/01/29 20:43:24 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		main(int argc, char **argv)
 
 	map = (t_map*)malloc(sizeof(t_map));
 	read_map(argv[1], map);
-	
+
 	i = 0;
 	while (i != map->y)
 	{
@@ -28,14 +28,18 @@ int		main(int argc, char **argv)
 		while(j != map->x)
 		{
 			ft_putnbr((map->z)[i][j]);
-			ft_putchar(' ');								
+			ft_putchar(' ');
 			j++;
 		}
 		ft_putchar('\n');
 		i++;
-		
+
 	}
-	//readinf of file from Sasha
+	map->mlx_ptr = mlx_init();
+	map->win_ptr = mlx_new_window(map->mlx_ptr, 1000, 1000, "FDF");
+	//drawing
+	//hotkeys
+//	mlx_loop(map->mlx_ptr);
 	//map->mlx_ptr = mlx_init();
 	return (0);
 }
