@@ -14,5 +14,13 @@
 # define FDF_H
 
 # include "libft/libft.h"
+# include <fcntl.h>
+
+typedef struct  map_s
+{
+    int y;
+    int x;
+    int **z;
+}               t_map;
 
 #endif
