@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/27 19:08:26 by ggeri             #+#    #+#             */
-/*   Updated: 2020/01/29 18:45:17 by ggeri            ###   ########.fr       */
+/*   Created: 2020/01/27 19:24:53 by ggeri             #+#    #+#             */
+/*   Updated: 2020/01/29 18:45:18 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef FDF_H
+# define FDF_H
 
-int		main(int argc, char **argv)
+# include "libft/libft.h"
+# include "minilibx_macos/mlx.h"
+# include <fcntl.h>
+
+typedef struct 	map_s
 {
-	t_map	*map;
+	int 	y;
+	int 	x;
+	int 	**z;
 
-	map = (t_map*)malloc(sizeof(t_map));
-	//readinf of file from Sasha
-	map->mlx_ptr = mlx_init();
-	map->win_ptr = mlx_new_window(map->mlx_ptr, 1000, 1000, "FDF");
-	//drawing
-	//hotkeys
-	mlx_loop(map->mlx_ptr);
-	return (0);
-}
+	void	*mlx_ptr;
+	void	*win_ptr;
+}				t_map;
+
+void			draw_line(int x, int y, int x1, int x2, t_map *map);
+
+#endif
