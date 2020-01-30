@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:08:26 by ggeri             #+#    #+#             */
-/*   Updated: 2020/01/30 17:11:59 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/01/30 20:43:02 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int		main(int argc, char **argv)
 	map->win_ptr = mlx_new_window(map->mlx_ptr, 1000, 1000, "FDF");
 	//drawing
 	//hotkeys
-	//draw_line(10, 10, 600, 300, map);
+	mlx_key_hook(map->win_ptr, press_key, map);
+	//mlx_loop_hook(map->mlx_ptr, press_key_0, map);
 	draw(map);
 	mlx_loop(map->mlx_ptr);
-
 	return (0);
 }

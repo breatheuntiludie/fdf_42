@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:51:46 by ggeri             #+#    #+#             */
-/*   Updated: 2020/01/30 19:22:24 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/01/30 20:25:07 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,12 @@ void	draw_line(float x, float y, float x1, float y1, t_map *map)
 	x1 *= map->scale;
 	y1 *= map->scale;
 	map->colour = (z) ? 0xe80c0c : 0xffffff;
-	iso(&x, &y, z);
-	iso(&x1, &y1, z1);
+//	iso(&x, &y, z);
+//	iso(&x1, &y1, z1);
+	x += map->key_x;
+	x1 += map->key_x;
+	y += map->key_y;
+	y1 += map->key_y;
 	x_size = x1 - x;
 	y_size = y1 - y;
 	max = find_max(find_mod(x_size), find_mod(y_size));
