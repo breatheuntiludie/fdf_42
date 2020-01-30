@@ -6,11 +6,13 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:51:46 by ggeri             #+#    #+#             */
-/*   Updated: 2020/01/29 20:53:38 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/01/30 17:52:33 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+#include "stdio.h"
 
 float	find_max(float x_size, float y_size)
 {
@@ -37,10 +39,16 @@ void	draw_line(float x, float y, float x1, float y1, t_map *map)
 	int		z;
 	int		z1;
 
+	map->scale = 30;
 	z = map->z[(int)x][(int)y];
 	z1 = map->z[(int)x1][(int)y1];
+	x *= map->scale;
+	y *= map->scale;
+	x1 *= map->scale;
+	y1 *= map->scale;
 	x_size = x1 - x;
 	y_size = y1 - y;
+	map->colour = (z) ? 0xe80c0c : 0xffffff;
 	max = find_max(find_mod(x_size), find_mod(y_size));
 	x_size /= max;
 	y_size /= max;
@@ -63,7 +71,7 @@ void	draw(t_map *map)
 		x = 0;
 		while (x < map->x)
 		{
-			if (x < map->x -1)
+			if (x < map->x - 1)
 				draw_line(x, y, x + 1, y, map);
 			if (y < map->y - 1)
 				draw_line(x, y, x, y + 1, map);

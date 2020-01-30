@@ -6,7 +6,7 @@
 #    By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 19:05:20 by ggeri             #+#    #+#              #
-#    Updated: 2020/01/27 19:26:12 by ggeri            ###   ########.fr        #
+#    Updated: 2020/01/30 16:32:07 by ggeri            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = fdf
 FLAGS = -Wall -Wextra -Werror
 
 # functions name
-SRC = main
+SRC = main read drawing
 
 # functions <name>.c
 FUNC_C = $(patsubst %, %.c, $(SRC))

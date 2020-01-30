@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:24:53 by ggeri             #+#    #+#             */
-/*   Updated: 2020/01/29 20:48:15 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/01/30 17:43:17 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct 	map_s
 	int 	y;
 	int 	x;
 	int 	**z;
+	int		scale;
+	int		colour; //white - 0xffffff     red - 0xe80c0c
 
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -29,5 +31,5 @@ typedef struct 	map_s
 
 void			draw_line(float x, float y, float x1, float y1, t_map *map);
 void			read_map(char *file, t_map *map);
-void			draw(t_map *map)
+void			draw(t_map *map);
 #endif

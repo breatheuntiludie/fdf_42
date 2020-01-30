@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: icanker <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:08:06 by icanker           #+#    #+#             */
-/*   Updated: 2020/01/29 16:08:09 by icanker          ###   ########.fr       */
+/*   Updated: 2020/01/29 20:07:43 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ int get_width(char *file)
 
     fd = open(file, O_RDONLY, 0);
     get_next_line(fd, &line);
-    
+
     x = 0;
     loc = ft_strsplit(line, ' ');
-    
+
     while (loc[x])
         x++;
     close(fd);
-    
+
     return (x);
 }
 

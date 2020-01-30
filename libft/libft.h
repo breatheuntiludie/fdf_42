@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 22:12:59 by ggeri             #+#    #+#             */
-/*   Updated: 2019/10/14 14:03:26 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/01/30 17:00:22 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-# define BUFF_SIZE 5
+# define BUFF_SIZE 6
 
 typedef	struct		s_list
 {
