@@ -6,7 +6,7 @@
 #    By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 19:05:20 by ggeri             #+#    #+#              #
-#    Updated: 2020/01/30 16:32:07 by ggeri            ###   ########.fr        #
+#    Updated: 2020/01/31 16:32:25 by ggeri            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,11 @@ NAME = fdf
 # compiling with flags
 FLAGS = -Wall -Wextra -Werror
 
+# adding framework
+FRAME = minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
+
 # functions name
-SRC = main read drawing
+SRC = main read drawing key
 
 # functions <name>.c
 FUNC_C = $(patsubst %, %.c, $(SRC))
@@ -33,7 +36,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(HEADER)
 		make -C libft/ fclean && make -C libft/
 		gcc $(FLAGS) -I libft -I $(HEADER) -o main.o -c main.c
-		gcc -o $(NAME) $(OBJ) -I $(HEADER) -I libft -L libft/ -lft
+		gcc -o $(NAME) $(OBJ) -I $(HEADER) -I libft -L libft/ -lft $(FRAME)
 
 $(FUNC_O): %.o: %.c
 		gcc $(FLAGS) -c $< -I $(HEADERS)

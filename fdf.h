@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:24:53 by ggeri             #+#    #+#             */
-/*   Updated: 2020/01/30 20:23:45 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/01/31 17:20:52 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct 	map_s
 	int		colour; //white - 0xffffff     red - 0xe80c0c
 	int		key_x;
 	int		key_y;
-
+	int		coords[2]; //coords[0] - x && coords[1] - y
 	void	*mlx_ptr;
 	void	*win_ptr;
 }				t_map;

@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:08:26 by ggeri             #+#    #+#             */
-/*   Updated: 2020/01/30 20:43:02 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/01/31 16:22:08 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ int		main(int argc, char **argv)
 	t_map	*map;
 	int i;
 	int j;
+
+	if (argc != 2)
+		return (0);
 
 	map = (t_map*)malloc(sizeof(t_map));
 	read_map(argv[1], map);
