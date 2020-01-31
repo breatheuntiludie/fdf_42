@@ -1,0 +1,4 @@
+#!/bin/bash
+gcc *.c libft/libft.a minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
+sleep 1
+./a.out test_maps/42.fdf
