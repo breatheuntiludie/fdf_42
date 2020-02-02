@@ -6,7 +6,7 @@
 #    By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 19:05:20 by ggeri             #+#    #+#              #
-#    Updated: 2020/01/31 20:26:47 by ggeri            ###   ########.fr        #
+#    Updated: 2020/02/02 16:25:36 by ggeri            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FLAGS = -g -Wall -Wextra -Werror
 FRAME = minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
 
 # functions name
-SRC = main read drawing key
+SRC = main read drawing key viewing
 
 # functions <name>.c
 FUNC_C = $(patsubst %, %.c, $(SRC))

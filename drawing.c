@@ -6,13 +6,13 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:51:46 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/02 14:44:56 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/02 16:48:10 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-float	find_max(float x_size, float y_size)
+static float	find_max(float x_size, float y_size)
 {
 	if (x_size > y_size)
 		return (x_size);
@@ -20,7 +20,7 @@ float	find_max(float x_size, float y_size)
 		return (y_size);
 }
 
-float	find_mod(float x_size)
+static float	find_mod(float x_size)
 {
 	if (x_size < 0)
 		x_size *= -1;
@@ -29,29 +29,29 @@ float	find_mod(float x_size)
 	return (x_size);
 }
 
-void	iso(float *x, float *y, int z)
+static void		local(float *x_size, float *y_size)
 {
-	*x = (*x - *y) * cos(30 * 3.14 / 180);
-	*y = (*x + *y) * sin(30 * 3.14 / 180) - z;
+	int max;
+
+	max = find_max(find_mod(*x_size), find_mod(*y_size));
+	*x_size /= max;
+	*y_size /= max;
 }
 
 void	draw_line(float x1, float y1, t_map *map)
 {
 	float	x_size;
 	float	y_size;
-	int		max;
 	int		z;
 	int		z1;
-	float x = map->x_s;
-	float y = map->y_s;
+	float	x;
+	float	y;
 
-	map->scale = 30;
+	x = map->x_s;
+	y = map->y_s;
 	z = map->z[(int)y][(int)x];
 	z1 = map->z[(int)y1][(int)x1];
-	x *= map->scale;
-	y *= map->scale;
-	x1 *= map->scale;
-	y1 *= map->scale;
+	scaling(&x, &y, &x1, &y1);
 	map->colour = (z) ? 0xe80c0c : 0xffffff;
 	iso(&x, &y, z);
 	iso(&x1, &y1, z1);
@@ -61,9 +61,7 @@ void	draw_line(float x1, float y1, t_map *map)
 	y1 += map->key_y;
 	x_size = x1 - x;
 	y_size = y1 - y;
-	max = find_max(find_mod(x_size), find_mod(y_size));
-	x_size /= max;
-	y_size /= max;
+	local(&x_size, &y_size);
 	while ((int)(x - x1) || (int)(y - y1))
 	{
 		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, map->colour);
