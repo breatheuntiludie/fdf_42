@@ -1,4 +1,4 @@
 #!/bin/bash
-gcc *.c libft/libft.a minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
+make fclean && make
 sleep 1
-./a.out test_maps/42.fdf
+./fdf test_maps/42.fdf
