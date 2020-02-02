@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:24:53 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/02 16:41:17 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/02 17:23:45 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	map_s
 
 void			scaling(float *x, float *y, float *x1, float *y1);
 void			iso(float *x, float *y, int z);
+void			move(float *c, float *c1, int key);
 void			draw_line(float x1, float y1, t_map *map);
 void			read_map(char *file, t_map *map);
 void			draw(t_map *map);
