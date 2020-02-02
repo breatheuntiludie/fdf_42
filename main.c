@@ -43,8 +43,8 @@ int		main(int argc, char **argv)
 	map->mlx_ptr = mlx_init();
 	map->win_ptr = mlx_new_window(map->mlx_ptr, 1000, 1000, "FDF");
 
-	mlx_key_hook(map->win_ptr, press_key, map);
-	//mlx_loop_hook(map->mlx_ptr, press_key_0, map);
+	mlx_hook(map->win_ptr, 2, 0, press_key, map);
+	//mlx_key_hook(map->win_ptr, exit_map, map);
 	draw(map);
 	mlx_loop(map->mlx_ptr);
 	return (0);
