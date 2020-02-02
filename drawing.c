@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:51:46 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/02 19:25:27 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/02 20:30:52 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void			draw_line(float x1, float y1, t_map *map)
 	z1 = map->z[(int)y1][(int)x1];
 	scaling(&x, &y, &x1, &y1);
 	map->colour = (z) ? 0xe80c0c : 0xffffff;
-	iso(&x, &y, z);
-	iso(&x1, &y1, z1);
+	iso(&x, &y, z, map);
+	iso(&x1, &y1, z1, map);
 	move(&x, &x1, map->key_x);
 	move(&y, &y1, map->key_y);
 	size[0] = x1 - x;
