@@ -38,6 +38,15 @@ static void		local(float *x_size, float *y_size)
 	*y_size /= max;
 }
 
+// void	make_color(int z, t_map *map)
+// {
+// 	int h;
+
+// 	h = (map->max_z - map->min_z) / 232;
+
+
+// }
+
 void	draw_line(float x1, float y1, t_map *map)
 {
 	float	x_size;

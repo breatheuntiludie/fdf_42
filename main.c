@@ -24,6 +24,8 @@ int		main(int argc, char **argv)
 	map = (t_map*)malloc(sizeof(t_map));
 	map->key_x = 0;
 	map->key_y = 0;
+	map->max_z = 0;
+	map->min_z = 0;
 	read_map(argv[1], map);
 
 	i = 0;

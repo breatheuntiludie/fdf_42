@@ -33,6 +33,8 @@ typedef struct	map_s
 	int		key_y;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		min_z;
+	int		max_z;
 
 }				t_map;
 
