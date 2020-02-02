@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:24:53 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/02 17:23:45 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/02 19:28:21 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 
 # define SCALE 25
+# define MOVE 10
 
 typedef struct	map_s
 {
@@ -27,7 +28,6 @@ typedef struct	map_s
 	int		**z;
 	float	x_s;
 	float	y_s;
-	//int		scale;
 	int		colour; //white - 0xffffff     red - 0xe80c0c
 	int		key_x;
 	int		key_y;
@@ -35,12 +35,12 @@ typedef struct	map_s
 	void	*win_ptr;
 	int		min_z;
 	int		max_z;
-
 }				t_map;
 
 void			scaling(float *x, float *y, float *x1, float *y1);
 void			iso(float *x, float *y, int z);
 void			move(float *c, float *c1, int key);
+void			stepping(float *x, float *y, float *x_size, float *y_size);
 void			draw_line(float x1, float y1, t_map *map);
 void			read_map(char *file, t_map *map);
 void			draw(t_map *map);

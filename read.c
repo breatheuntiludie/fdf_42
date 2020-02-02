@@ -49,18 +49,17 @@ int get_width(char *file)
     return (x);
 }
 
-void    fill_z(int *line_z, char *line, int *min_z, int *max_z)
+void    fill_z(int *line_z, char *line)
 {
     char    **nbrs;
     int     i;
+
 
     i = 0;
     nbrs = ft_strsplit(line, ' ');
     while (nbrs[i])
     {
         line_z[i] = ft_atoi(nbrs[i]);
-        *max_z = (line_z[i] > *max_z) ? line_z[i] : *max_z;
-        *min_z = (line_z[i] > *min_z) ? *min_z : line_z[i];
         free(nbrs[i]);
         i++;
     }
@@ -89,7 +88,7 @@ void read_map(char *file, t_map *map)
     i = 0;
     while (get_next_line(fd, &line))
     {
-        fill_z(map->z[i], line, &(map->min_z), &(map->max_z));
+        fill_z(map->z[i], line);
         free(line);
         i++;
     }

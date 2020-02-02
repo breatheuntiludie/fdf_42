@@ -1,4 +1,4 @@
 #!/bin/bash
-make fclean && make
+make fclean && make && make clean
 sleep 1
 ./fdf test_maps/42.fdf
