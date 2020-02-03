@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:24:53 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/02 17:23:45 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/03 19:47:52 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define SCALE 25
 # define MOVE 10
 # define PROJECTION 1
-# define SIZE 1999
+# define SIZE 999
 
 typedef struct	map_s
 {
@@ -38,9 +38,19 @@ typedef struct	map_s
 	int		min_z;
 	int		max_z;
 	int		code;
+	int		rot_x;
+	int		angle_x;
+	int		rot_y;
+	int		angle_y;
+	int		rot_z;
+	int		angle_z;
 }				t_map;
 
+void			place_menu(t_map *map);
 void			scaling(float *x, float *y, float *x1, float *y1);
+void			rot_x(float *x, float *y, int z, t_map *map);
+void			rot_y(float *x, float *y, int z, t_map *map);
+void			rot_z(float *x, float *y, int z, t_map *map);
 void			iso(float *x, float *y, int z, t_map *map);
 void			move(float *c, float *c1, int key);
 void			stepping(float *x, float *y, float *x_size, float *y_size);
@@ -49,5 +59,7 @@ void			read_map(char *file, t_map *map);
 void			draw(t_map *map);
 int				press_key(int key, t_map *map);
 int				change_iso(int key, t_map *map);
+int				mouse(int key, t_map *map);
+int				make_color(float z, t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:51:46 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/02 17:24:12 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/03 19:43:40 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,19 @@ static void		local(float *x_size, float *y_size)
 
 int	make_color(float z, t_map *map)
 {
-	float h;
-	int part;
+	float h_red;
+	float h_gb;
+	int part_red;
+	int part_gb;
 	//z /= SCALE;
 
-	h =  (1.3 * (float)map->max_z - (float)map->min_z) / 256;//16^5
+	h_red = (float)(map->max_z - map->min_z) / 23 * SCALE;
+	h_gb = (float)(map->max_z - map->min_z) / 243 * SCALE;
+
 	z = (map->min_z < 0) ? z + map->min_z : z;
-	part = (h) ? z / h : z;
-	return ( 0xffff99 - part * 0x010000 - part * 0x000100);
+	part_red = (map->max_z - map->min_z) ? (z / h_red) : z;
+	part_gb = (map->max_z - map->min_z) ? (z / h_gb) : z;
+	return ( 0xffffff - part_red * 0x010000 - part_gb * 0x000101);
 }
 
 void	draw_line(float x1, float y1, t_map *map)
@@ -63,29 +68,56 @@ void	draw_line(float x1, float y1, t_map *map)
 
 	x = map->x_s;
 	y = map->y_s;
-	z = map->z[(int)y][(int)x];
-	z1 = map->z[(int)y1][(int)x1];
+	z = map->z[(int)y][(int)x] * SCALE;
+	z1 = map->z[(int)y1][(int)x1] * SCALE;
 	scaling(&x, &y, &x1, &y1);
-	
+
 	//map->colour = (z) ? 0xff6600 : 0xffffff;
-	iso(&x, &y, z , map);
+
+	iso(&x, &y, z, map);
 	iso(&x1, &y1, z1, map);
+	rot_x(&x, &y, z, map);
+	rot_x(&x1, &y1, z1, map);
+	rot_y(&x, &y, z, map);
+	rot_y(&x1, &y1, z1, map);
+	rot_z(&x, &y, z, map);
+	rot_z(&x1, &y1, z1, map);
 	move(&x, &x1, map->key_x);
 	move(&y, &y1, map->key_y);
+	z_0 = z;
+	if (z > z1)
+	{
+		z = z1;
+		z1 = z_0;
+		z_0 = z;
+
+
+		t = x;
+		x = x1;
+		x1 = t;
+
+		t = y;
+		y = y1;
+		y1 = t;
+		t = y1;
+
+	}
 	x_size = x1 - x;
 	y_size = y1 - y;
 	local(&x_size, &y_size);
 	t = y;
-	z_0 = z;
+
 	map->colour = make_color(z, map);
 	while ((int)(x - x1) || (int)(y - y1))
 	{
+		//z = (y1 > t) ? (z1 - z_0) * ((y - t) / (y1 - t)) : (z_0 - z1) * ((y - t) / (y1 - t));  0xe80c0c
 		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, map->colour);
+		//z = (z1 - z_0) * ((y - t) / (y1 - t));
 		z = (z1 - z_0) * ((y - t) / (y1 - t));
 		if (z1 != z_0)
 			map->colour = make_color(z, map);
 		else
-			map->colour = make_color(z1,map);
+			map->colour = make_color(z_0,map);
 		x += x_size;
 		y += y_size;
 	}
@@ -94,6 +126,7 @@ void	draw_line(float x1, float y1, t_map *map)
 
 void	draw(t_map *map)
 {
+	place_menu(map);
 	map->y_s = 0;
 	while (map->y_s < map->y)
 	{
