@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:24:53 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/02 20:42:19 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/02 17:23:45 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define SCALE 25
 # define MOVE 10
 # define PROJECTION 1
-# define SIZE 999
+# define SIZE 1999
 
 typedef struct	map_s
 {

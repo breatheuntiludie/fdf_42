@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 16:20:12 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/02 20:30:08 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/02 17:22:38 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ void	scaling(float *x, float *y, float *x1, float *y1)
 
 void	iso(float *x, float *y, int z, t_map *map)
 {
+	int	t;
+
 	if (map->code == 1)
 	{
+		t = *x;
 		*x = (*x - *y) * cos(30 * 3.14 / 180);
-		*y = (*x + *y) * sin(30 * 3.14 / 180) - z;
+		*y = (t + *y) * sin(30 * 3.14 / 180) - z;
 	}
 	else
 	{
@@ -44,5 +47,3 @@ void	stepping(float *x, float *y, float *x_size, float *y_size)
 	*x += *x_size;
 	*y += *y_size;
 }
-
-//void	centering()
