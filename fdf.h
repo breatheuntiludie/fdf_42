@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:24:53 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/03 19:47:52 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/04 19:24:01 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,6 @@ float			find_max(float x_size, float y_size);
 float			find_mod(float x_size);
 t_dpoint		init_pts(float x, float x1, float y, float y1);
 void			init_map(t_map *map);
+void			clean(t_map *map);
+
 #endif

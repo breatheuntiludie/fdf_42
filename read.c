@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:08:06 by icanker           #+#    #+#             */
-/*   Updated: 2020/02/03 20:03:35 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/04 19:40:39 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		get_height(char *file)
 int		get_width(char *file)
 {
 	int		x;
+	int		i;
 	int		fd;
 	char	*line;
 	char	**loc;
@@ -57,6 +58,11 @@ int		get_width(char *file)
 	loc = ft_strsplit(line, ' ');
 	while (loc[x])
 		x++;
+	free(line);
+	i = 0;
+	while (i < x)
+		free(loc[i++]);
+	free(loc);
 	close(fd);
 	return (x);
 }

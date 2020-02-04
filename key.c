@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 20:06:55 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/03 19:48:54 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/04 19:40:51 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		press_key_0(int key, t_map *map)
 	if (key == 53)
 	{
 		mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+		clean(map);
 		exit(0);
 	}
 	return (0);

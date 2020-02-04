@@ -6,7 +6,7 @@
 #    By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 19:05:20 by ggeri             #+#    #+#              #
-#    Updated: 2020/02/03 19:45:13 by ggeri            ###   ########.fr        #
+#    Updated: 2020/02/04 20:11:43 by ggeri            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = fdf
 
 # compiling with flags
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 
 # adding framework
 FRAME = minilibx_macos/libmlx.a -framework OpenGL -framework Appkit

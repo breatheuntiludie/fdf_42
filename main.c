@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 19:08:26 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/03 20:03:17 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/04 20:20:01 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ int		main(int argc, char **argv)
 	map->key_x = SIZE / 2 - map->x * SCALE / 2;
 	draw(map);
 	mlx_loop(map->mlx_ptr);
-	ft_putnbr(34567);
 	return (0);
 }

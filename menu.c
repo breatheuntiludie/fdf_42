@@ -6,7 +6,7 @@
 /*   By: ggeri <ggeri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 19:52:35 by ggeri             #+#    #+#             */
-/*   Updated: 2020/02/03 20:03:45 by ggeri            ###   ########.fr       */
+/*   Updated: 2020/02/04 19:41:06 by ggeri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,15 @@ void	place_menu(t_map *map)
 	"7) 'R' - Reload picture to plane moment");
 	c[8] = mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 130, 0xe80c0c, \
 	"8) 'ESC' - exit and close");
+}
+
+void	clean(t_map *map)
+{
+	int		i;
+
+	i = 0;
+	while (i != map->y)
+		free(map->z[i++]);
+	free(map->z);
+	free(map);
 }
