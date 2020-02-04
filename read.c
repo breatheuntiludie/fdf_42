@@ -38,10 +38,8 @@ int get_width(char *file)
 
     fd = open(file, O_RDONLY, 0);
     get_next_line(fd, &line);
-
     x = 0;
     loc = ft_strsplit(line, ' ');
-
     while (loc[x])
         x++;
     close(fd);

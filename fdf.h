@@ -23,7 +23,7 @@
 # define PROJECTION 1
 # define SIZE 999
 
-typedef struct	map_s
+typedef struct	s_map
 {
 	int		y;
 	int		x;
@@ -46,13 +46,13 @@ typedef struct	map_s
 	int		angle_z;
 }				t_map;
 
-typedef struct	dpoint_s
+typedef struct	s_dpoint
 {
 	float		y;
 	float		x;
 	float		y1;
 	float		x1;
-	float 		z;
+	float		z;
 	float		z1;
 }				t_dpoint;
 
@@ -71,5 +71,7 @@ int				press_key(int key, t_map *map);
 int				change_iso(int key, t_map *map);
 int				mouse(int key, t_map *map);
 int				make_color(float z, t_map *map);
-
+// int				press_mouse(int button, int x, int y, t_map *map);
+// int				release_mouse(int button, int x, int y, t_map *map);
+// int				move_mose(int x, int y, t_map *map);
 #endif

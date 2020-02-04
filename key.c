@@ -21,6 +21,38 @@
 // 	}
 // 	return (0);
 // }
+// int				release_mouse(int button, int x, int y, t_map *map)
+// {
+// 	return (0);
+// }
+
+// int		move_mose(int x, int y, t_map *map)
+// {
+// 	map->rot_x = 1;
+// 	map->angle_x += x;
+// 	mlx_clear_window(map->mlx_ptr, map->win_ptr);
+// 	draw(map);
+// 	mlx_loop(map->mlx_ptr);
+// 	return (0);
+// }
+
+// int		press_mouse(int button, int x, int y, t_map *map)
+// {
+// 	while(1)
+// 	{
+// 		map->rot_x = 1;
+// 	map->angle_x += x;
+// 	mlx_clear_window(map->mlx_ptr, map->win_ptr);
+// 	draw(map);
+// 		//mlx_hook(map->win_ptr, 4, 0, release_mouse, map);
+// 		if (!mlx_hook(map->win_ptr, 12, 0, move_mose(x, y, map), map))
+// 			break;
+		
+		
+// 	}
+// 	return (0);
+// }
+
 void	reset(t_map *map)
 {
 	map->key_x = 0;
@@ -47,15 +79,13 @@ int		change_iso(int key, t_map *map)
 	if (key == 69)
 		change_mod(map);
 	if (key == 15)
-	{
 		reset(map);
-	}
 	mlx_clear_window(map->mlx_ptr, map->win_ptr);
 	draw(map);
 	return (0);
 }
 
-int		press_key(int key, t_map *map)
+int		press_key_0(int key, t_map *map)
 {
 	if (key == 7)
 	{
@@ -77,6 +107,12 @@ int		press_key(int key, t_map *map)
 		mlx_destroy_window (map->mlx_ptr, map->win_ptr);
 		exit(0);
 	}
+	return (0);
+}
+
+int		press_key(int key, t_map *map)
+{
+	press_key_0(key, map);
 	if (key == 126)
 		map->key_y -= MOVE;
 	if (key == 125)
