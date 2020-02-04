@@ -12,16 +12,6 @@
 
 #include "fdf.h"
 
-static float	find_max(float x_size, float y_size)
-{
-	return (x_size > y_size) ? x_size : y_size;
-}
-
-static float	find_mod(float x_size)
-{
-	return (x_size < 0) ? (x_size * (-1)) : x_size;
-}
-
 static void		local(float *x_size, float *y_size)
 {
 	int max;
@@ -44,32 +34,6 @@ int				mk_col(float z, t_map *map)
 	part_red = (map->max_z - map->min_z) ? (z / h_red) : z;
 	part_gb = (map->max_z - map->min_z) ? (z / h_gb) : z;
 	return (0xffffff - part_red * 0x010000 - part_gb * 0x000101);
-}
-
-void			ft_swap(float *num_0, float *num_1)
-{
-	float num_2;
-
-	num_2 = *num_0;
-	*num_0 = *num_1;
-	*num_1 = num_2;
-}
-
-t_dpoint		init_pts(float x, float x1, float y, float y1)
-{
-	t_dpoint pts;
-
-	pts.x = x;
-	pts.y = y;
-	pts.x1 = x1;
-	pts.y1 = y1;
-	return (pts);
-}
-
-void			init_z(float z, float z1, t_dpoint *pts)
-{
-	pts->z = z * SCALE;
-	pts->z1 = z1 * SCALE;
 }
 
 void			make_all_pts(t_map *map, t_dpoint *pts)

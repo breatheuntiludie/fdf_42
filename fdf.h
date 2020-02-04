@@ -30,7 +30,7 @@ typedef struct	s_map
 	int		**z;
 	float	x_s;
 	float	y_s;
-	int		colour; //white - 0xffffff     red - 0xe80c0c
+	int		colour;
 	int		key_x;
 	int		key_y;
 	void	*mlx_ptr;
@@ -67,11 +67,14 @@ void			stepping(float *x, float *y, float *x_size, float *y_size);
 void			draw_line(float x1, float y1, t_map *map);
 void			read_map(char *file, t_map *map);
 void			draw(t_map *map);
+void			ft_swap(float *num_0, float *num_1);
+void			init_z(float z, float z1, t_dpoint *pts);
 int				press_key(int key, t_map *map);
 int				change_iso(int key, t_map *map);
 int				mouse(int key, t_map *map);
 int				make_color(float z, t_map *map);
-// int				press_mouse(int button, int x, int y, t_map *map);
-// int				release_mouse(int button, int x, int y, t_map *map);
-// int				move_mose(int x, int y, t_map *map);
+float			find_max(float x_size, float y_size);
+float			find_mod(float x_size);
+t_dpoint		init_pts(float x, float x1, float y, float y1);
+void			init_map(t_map *map);
 #endif

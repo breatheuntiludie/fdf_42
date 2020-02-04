@@ -14,14 +14,7 @@
 
 void	place_menu(t_map *map)
 {
-	int		c[9];
-	// int		a;
-	// int		b;
-	// int		d;
-	// int		e;
-	// int		f;
-	// int		h;
-	// int		i;
+	int	c[9];
 
 	c[0] = mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 10, 0xe80c0c, \
 	"MENU:");
@@ -41,19 +34,4 @@ void	place_menu(t_map *map)
 	"7) 'R' - Reload picture to plane moment");
 	c[8] = mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 130, 0xe80c0c, \
 	"8) 'ESC' - exit and close");
-
-	// void	*menu;
-	// void	*menu_1;
-	// int		check;
-	// int		absciss = 500;
-	// int		ordinat = 700;
-
-	// menu = mlx_new_image(map->mlx_ptr, absciss, ordinat);
-	// char *line;
-	// line = ft_strjoin("", "MENU");
-	// // check = mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, menu, 0, 0);
-	// // menu_1 = mlx_xpm_to_image(map->mlx_ptr, &line, &absciss, &ordinat);
-	// char *filename = "20190904_182125.jpg";
-	// menu_1 = mlx_xpm_file_to_image(map->mlx_ptr, filename, &absciss, &ordinat);
-	// check = mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, menu, 10, 10);
 }

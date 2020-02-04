@@ -12,32 +12,10 @@
 
 #include "fdf.h"
 
-void	init_map(t_map *map)
-{
-	map->key_x = 0;
-	map->key_y = 0;
-	map->max_z = 0;
-	map->min_z = 0;
-	map->code = 0;
-	map->rot_x = 0;
-	map->angle_x = 0;
-	map->rot_y = 0;
-	map->angle_y = 0;
-	map->rot_z = 0;
-	map->angle_z = 0;
-}
-
-void	free_map(t_map *map)
-{
-	int i = 0;
-	while (i != map->y)
-		free(map->z[i]);
-	free(map);
-}
-
 int		main(int argc, char **argv)
 {
 	t_map	*map;
+
 	if (argc != 2)
 		return (0);
 	map = (t_map*)malloc(sizeof(t_map));
@@ -52,6 +30,5 @@ int		main(int argc, char **argv)
 	draw(map);
 	mlx_loop(map->mlx_ptr);
 	ft_putnbr(34567);
-	//free_map(map);
 	return (0);
 }

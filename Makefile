@@ -14,13 +14,13 @@
 NAME = fdf
 
 # compiling with flags
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 # adding framework
 FRAME = minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
 
 # functions name
-SRC = main read drawing key viewing menu
+SRC = main read drawing key viewing menu help_drawing rot
 
 # functions <name>.c
 FUNC_C = $(patsubst %, %.c, $(SRC))
