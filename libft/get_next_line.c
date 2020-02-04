@@ -3,90 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggeri <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: icanker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/29 14:11:30 by ggeri             #+#    #+#             */
-/*   Updated: 2019/10/10 20:46:47 by ggeri            ###   ########.fr       */
+/*   Created: 2019/11/03 14:37:43 by icanker           #+#    #+#             */
+/*   Updated: 2019/11/03 14:41:22 by icanker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_list	*find_create(const int fd, t_list **link)
+static	int	app_line(char **mas_str, char **line)
 {
-	t_list	*temp;
+	int		len;
+	char	*fd_str;
 
-	if (!*link)
+	len = 0;
+	while ((*mas_str)[len] != '\0' && (*mas_str)[len] != '\n')
+		len++;
+	if ((*mas_str)[len] == '\n')
 	{
-		*link = (t_list*)malloc(sizeof(t_list));
-		(*link)->content = "";
-		(*link)->content_size = (size_t)fd;
-		(*link)->next = NULL;
+		*line = ft_strsub(*mas_str, 0, len);
+		fd_str = ft_strdup(&((*mas_str)[len + 1]));
+		free(*mas_str);
+		*mas_str = fd_str;
+		if ((*mas_str)[0] == '\0')
+			ft_strdel(mas_str);
 	}
-	temp = *link;
-	while (temp)
+	else
 	{
-		if ((int)temp->content_size == fd)
-			return (temp);
-		if (temp->next != NULL)
-			temp = temp->next;
-		else
-			break ;
+		*line = ft_strdup(*mas_str);
+		ft_strdel(mas_str);
 	}
-	temp->next = (t_list*)malloc(sizeof(t_list));
-	temp = temp->next;
-	temp->content = "";
-	temp->content_size = (size_t)fd;
-	temp->next = NULL;
-	return (temp);
+	return (1);
 }
 
-static int		parsing(const int fd, char **line, t_list *current)
+static	int	out(char **mas_str, char **line, int rd_len, int fd)
 {
-	int		answer;
-	char	temp[BUFF_SIZE + 1];
-	char	*helper;
-
-	ft_bzero(temp, BUFF_SIZE + 1);
-	while ((answer = read(fd, temp, BUFF_SIZE)) > 0 && \
-			(helper = current->content))
-	{
-		current->content = ft_strjoin(helper, temp);
-		ft_bzero(temp, BUFF_SIZE);
-		if (ft_strlen(helper) != 0)
-			free(helper);
-		if (ft_strchr(current->content, '\n'))
-			break ;
-	}
-	if (ft_strchr(current->content, '\n') && (answer = 1))
-	{
-		*line = ft_my_malloc_c_word(current->content, '\n');
-		helper = current->content;
-		current->content = ft_strdup(ft_strchr(helper, '\n') + 1);
-		free(helper);
-	}
-	else if (ft_strlen(current->content) != 0 && (answer = 2))
-		*line = ft_strdup(current->content);
-	return (answer);
-}
-
-int				get_next_line(const int fd, char **line)
-{
-	static t_list	*link;
-	int				ret;
-	t_list			*current;
-
-	if (!line || fd < 0 || BUFF_SIZE < 0 || (read(fd, NULL, 0) == -1))
+	if (rd_len < 0)
 		return (-1);
-	current = find_create(fd, &link);
-	ret = parsing(fd, line, current);
-	if (ft_strcmp(*line, current->content) == 0 && \
-			ft_strchr(current->content, '\n') == NULL && ret == 2)
+	else if (rd_len == 0 && mas_str[fd] == NULL)
+		return (0);
+	else
+		return (app_line(&mas_str[fd], line));
+}
+
+int			get_next_line(const int fd, char **line)
+{
+	int			rd_len;
+	static char	*mas_str[200];
+	char		buff[BUFF_SIZE + 1];
+	char		*fd_str;
+
+	if (fd < 0 || line == NULL)
+		return (-1);
+	while ((rd_len = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		ret = 1;
-		if (ft_strlen(current->content) > 0)
-			free(current->content);
-		current->content = "";
+		buff[rd_len] = '\0';
+		if (mas_str[fd] == NULL)
+			mas_str[fd] = ft_strdup(buff);
+		else
+		{
+			fd_str = ft_strjoin(mas_str[fd], buff);
+			free(mas_str[fd]);
+			mas_str[fd] = fd_str;
+		}
+		if (ft_strchr(mas_str[fd], '\n'))
+			break ;
 	}
-	return (ret);
+	return (out(mas_str, line, rd_len, fd));
 }
