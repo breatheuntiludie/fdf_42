@@ -82,9 +82,7 @@ void read_map(char *file, t_map *map)
     map->z = (int **)malloc(sizeof(int *) * (map->y + 1));
     i = 0;
     while (i != map->y)
-    {
         map->z[i++] = (int *)malloc(sizeof(int) * (map->x + 1));
-    }
     fd = open(file, O_RDONLY);
     i = 0;
     while (get_next_line(fd, &line))

@@ -18,8 +18,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define SCALE 25
-# define MOVE 10
+# define SCALE 30
+# define MOVE 15
 # define PROJECTION 1
 # define SIZE 999
 
@@ -45,6 +45,16 @@ typedef struct	map_s
 	int		rot_z;
 	int		angle_z;
 }				t_map;
+
+typedef struct	dpoint_s
+{
+	float		y;
+	float		x;
+	float		y1;
+	float		x1;
+	float 		z;
+	float		z1;
+}				t_dpoint;
 
 void			place_menu(t_map *map);
 void			scaling(float *x, float *y, float *x1, float *y1);

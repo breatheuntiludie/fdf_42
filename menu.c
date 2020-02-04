@@ -26,7 +26,7 @@ void	place_menu(t_map *map)
 	c[0] = mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 10, 0xe80c0c, \
 	"MENU:");
 	c[1] = mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 25, 0xe80c0c, \
-	"1) '+/-' - change map from plane to isometric");
+	"1) '+' - change map from plane to isometric");
 	c[2] = mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 40, 0xe80c0c, \
 	"2) 'arrows' - move left, right, up, down");
 	c[3] = mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 55, 0xe80c0c, \

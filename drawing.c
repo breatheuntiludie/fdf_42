@@ -44,7 +44,6 @@ int	make_color(float z, t_map *map)
 	float h_gb;
 	int part_red;
 	int part_gb;
-	//z /= SCALE;
 
 	h_red = (float)(map->max_z - map->min_z) / 23 * SCALE;
 	h_gb = (float)(map->max_z - map->min_z) / 243 * SCALE;
@@ -55,71 +54,80 @@ int	make_color(float z, t_map *map)
 	return ( 0xffffff - part_red * 0x010000 - part_gb * 0x000101);
 }
 
+void	ft_swap(float *num_0, float *num_1)
+{
+	float num_2;
+
+	num_2 = *num_0;
+	*num_0 = *num_1;
+	*num_1 = num_2;
+}
+
+t_dpoint	init_pts(float x, float x1, float y, float y1)
+{
+	t_dpoint pts;
+
+	pts.x = x;
+	pts.y = y;
+	pts.x1 = x1;
+	pts.y1 = y1;
+	return pts;
+}
+
+void		innit_z(float z, float z1, t_dpoint *pts)
+{
+	pts->z = z * SCALE;
+	pts->z1 = z1 * SCALE;
+}
+
+void 		make_all_pts(t_map *map, t_dpoint *pts)
+{
+	scaling(&pts->x, &pts->y, &pts->x1, &pts->y1);
+	iso(&pts->x, &pts->y, pts->z, map);
+	iso(&pts->x1, &pts->y1, pts->z1, map);
+	rot_x(&pts->x, &pts->y, pts->z, map);
+	rot_x(&pts->x1, &pts->y1, pts->z1, map);
+	rot_y(&pts->x, &pts->y, pts->z, map);
+	rot_y(&pts->x1, &pts->y1, pts->z1, map);
+	rot_z(&pts->x, &pts->y, pts->z, map);
+	rot_z(&pts->x1, &pts->y1, pts->z1, map);
+	move(&pts->x, &pts->x1, map->key_x);
+	move(&pts->y, &pts->y1, map->key_y);
+	if (pts->z > pts->z1)
+	{
+		ft_swap(&pts->z, &pts->z1);
+		ft_swap(&pts->x, &pts->x1);
+		ft_swap(&pts->y, &pts->y1);
+	}
+}
+
 void	draw_line(float x1, float y1, t_map *map)
 {
 	float	x_size;
 	float	y_size;
-	float		z;
-	float		z1;
-	float 		z_0;
-	float	x;
-	float	y;
-	float	t;
+	float 	z_0;
+	float	y_0;
+	t_dpoint pts;
 
-	x = map->x_s;
-	y = map->y_s;
-	z = map->z[(int)y][(int)x] * SCALE;
-	z1 = map->z[(int)y1][(int)x1] * SCALE;
-	scaling(&x, &y, &x1, &y1);
-
-	//map->colour = (z) ? 0xff6600 : 0xffffff;
-
-	iso(&x, &y, z, map);
-	iso(&x1, &y1, z1, map);
-	rot_x(&x, &y, z, map);
-	rot_x(&x1, &y1, z1, map);
-	rot_y(&x, &y, z, map);
-	rot_y(&x1, &y1, z1, map);
-	rot_z(&x, &y, z, map);
-	rot_z(&x1, &y1, z1, map);
-	move(&x, &x1, map->key_x);
-	move(&y, &y1, map->key_y);
-	z_0 = z;
-	if (z > z1)
-	{
-		z = z1;
-		z1 = z_0;
-		z_0 = z;
-
-
-		t = x;
-		x = x1;
-		x1 = t;
-
-		t = y;
-		y = y1;
-		y1 = t;
-		t = y1;
-
-	}
-	x_size = x1 - x;
-	y_size = y1 - y;
+	pts = init_pts(map->x_s, x1, map->y_s, y1);
+	innit_z(map->z[(int)pts.y][(int)pts.x], map->z[(int)y1][(int)x1], &pts);
+	make_all_pts(map, &pts);
+	x_size = pts.x1 - pts.x;
+	y_size = pts.y1 - pts.y;
 	local(&x_size, &y_size);
-	t = y;
-
-	map->colour = make_color(z, map);
-	while ((int)(x - x1) || (int)(y - y1))
+	y_0 = pts.y;
+	z_0 = pts.z;
+	map->colour = make_color(pts.z, map);
+	while ((int)(pts.x - pts.x1) || (int)(pts.y - pts.y1))
 	{
-		//z = (y1 > t) ? (z1 - z_0) * ((y - t) / (y1 - t)) : (z_0 - z1) * ((y - t) / (y1 - t));  0xe80c0c
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, map->colour);
-		//z = (z1 - z_0) * ((y - t) / (y1 - t));
-		z = (z1 - z_0) * ((y - t) / (y1 - t));
-		if (z1 != z_0)
-			map->colour = make_color(z, map);
+		mlx_pixel_put(map->mlx_ptr, map->win_ptr, pts.x, pts.y, map->colour);
+		pts.z = (pts.z1 - z_0) * ((pts.y - y_0) / (pts.y1 - y_0));
+		if (pts.z1 != z_0)
+			map->colour = make_color(pts.z, map);
 		else
 			map->colour = make_color(z_0,map);
-		x += x_size;
-		y += y_size;
+		pts.x += x_size;
+		pts.y += y_size;
 	}
 }
 

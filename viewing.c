@@ -67,13 +67,16 @@ void	rot_z(float *x, float *y, int z, t_map *map)
 
 void	iso(float *x, float *y, int z, t_map *map)
 {
-	int	t;
+	float	x_0;
+	float	y_0;
 
 	if (map->code == 1)
 	{
-		t = *x;
-		*x = (*x - *y) * cos(30 * 3.14 / 180);
-		*y = (t + *y) * sin(30 * 3.14 / 180) - z;
+		y_0 = *y;
+		x_0 = *x;
+		y_0 -= map->y/2 * SCALE;
+		*x = (x_0 - y_0) * cos(30 * 3.14 / 180);
+		*y = (x_0 + y_0) * sin(30 * 3.14 / 180) - z;
 	}
 	else
 		map->code = 0;

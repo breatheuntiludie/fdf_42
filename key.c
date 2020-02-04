@@ -21,24 +21,34 @@
 // 	}
 // 	return (0);
 // }
+void	reset(t_map *map)
+{
+	map->key_x = 0;
+	map->key_y = 0;
+	map->code = 0;
+	map->rot_x = 0;
+	map->angle_x = 0;
+	map->rot_y = 0;
+	map->angle_y = 0;
+	map->rot_z = 0;
+	map->angle_z = 0;
+}
+
+void	change_mod(t_map *map)
+{
+	map->angle_x = 0;
+	map->angle_y = 0;
+	map->angle_z = 0;
+	map->code = !(map->code);
+}
 
 int		change_iso(int key, t_map *map)
 {
-	if (key == 78)
-		map->code = PROJECTION;
 	if (key == 69)
-		map->code = 0;
+		change_mod(map);
 	if (key == 15)
 	{
-		map->key_x = 0;
-		map->key_y = 0;
-		map->code = 0;
-		map->rot_x = 0;
-		map->angle_x = 0;
-		map->rot_y = 0;
-		map->angle_y = 0;
-		map->rot_z = 0;
-		map->angle_z = 0;
+		reset(map);
 	}
 	mlx_clear_window(map->mlx_ptr, map->win_ptr);
 	draw(map);
@@ -82,8 +92,10 @@ int		press_key(int key, t_map *map)
 	}
 	if (key == 48 && map->code == 1)
 	{
-		map->key_y = SIZE / 2;
-		map->key_x = SIZE / 2;
+		change_mod(map);
+		map->key_y = SIZE / 2 - map->y * SCALE / 2;
+		map->key_x = SIZE / 2 - map->x * SCALE / 2;
+		change_mod(map);
 	}
 	mlx_clear_window(map->mlx_ptr, map->win_ptr);
 	draw(map);
